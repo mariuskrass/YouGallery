@@ -1,3 +1,8 @@
+<?php 
+    if(!$_SESSION['besucht'] == true){
+
+    }
+?>
 <!DOCTYPE html>
 <html lang="de">
   <head>
@@ -31,13 +36,13 @@
       <a class="navbar-brand" href="#">YouGallery</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav hidden">
         <li class="active"><a href="#">Feed</a></li>
         <li><a href="#">Hot</a></li>
         <li><a href="/picture">Bild hochladen</a></li>
       </ul>
       
-      <div class="col-sm-3 col-md-3">
+      <div class="col-sm-3 col-md-3 hidden">
         <form class="navbar-form" role="search">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Search" name="search" id="search">
