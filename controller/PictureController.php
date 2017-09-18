@@ -17,6 +17,7 @@ class PictureController
 
     public function upload()
     {
+    	$uploaddir = '/var/www/uploads/';
 		$uploadfile = $uploaddir . addslashes(time()) . basename($_FILES['userfile']['name']);
 		$filename = addslashes(time()) . basename($_FILES['userfile']['name']);
     	
