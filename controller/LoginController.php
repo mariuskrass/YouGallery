@@ -24,7 +24,9 @@ class LoginController
 		foreach($userRepository->readAll() as $user){
 			if($user->username == $benutzername){
 				if($user->password == $passwort){
-					$_SESSION['logged_in_user'] = $user->id;
+					session_start();
+					$_SESSION['user_id'] = $user->id;
+					$_SESSION['besucht'] = true;
 					$error = false;
 				}
 				else{
@@ -49,6 +51,7 @@ class LoginController
 			$view->title = 'Feed';
 			$view->heading = 'Feed';
 			$view->error = $error;
+			$view->id = $user->id;
 			$view->display();
 		}
 	}
