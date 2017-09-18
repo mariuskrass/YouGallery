@@ -24,7 +24,9 @@ class LoginController
 		foreach($userRepository->readAll() as $user){
 			if($user->username == $benutzername){
 				if($user->password == $passwort){
+					session_start();
 					$_SESSION['user_id'] = $user->id;
+					$_SESSION['besucht'] = true;
 					$error = false;
 				}
 				else{

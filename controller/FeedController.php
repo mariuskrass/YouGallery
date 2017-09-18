@@ -7,6 +7,7 @@ class FeedController
 {
     public function index()
     {
+        
         // Anfrage an die URI /user/crate weiterleiten (HTTP 302)
         $view = new View('feed');
         $view->title = 'Feed';

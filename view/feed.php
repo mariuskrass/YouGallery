@@ -1,13 +1,10 @@
 <?php 
-
-    if(!isset($_SESSION['user_id'])){
-        echo("Fail");
-        header('Location: /login');
-        exit();  
+session_start();
+    if($_SESSION['besucht'] == true){
+        echo("Logged in");
     }
-    else {
-        echo ($_SESSION['user_id']);
-        
+    else{
+        echo("Failed to login!");
     }
     
 ?>

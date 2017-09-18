@@ -1,8 +1,19 @@
 <?php 
+session_start();
 	if($error){
 		echo('<div class="alert alert-danger"><strong>Error!</strong> Benutzername oder Passwort falsch!
 		</div>');
 	}
+	if($_SESSION['besucht'] == true){
+		header("Location: /feed"); /* Browser umleiten */
+		
+		/* Stellen Sie sicher, dass der nachfolgende Code nicht ausgefuehrt wird, wenn
+		   eine Umleitung stattfindet. */
+		exit;
+	}
+
+
+	
 ?>
 <form action="/login/doLogin" method="POST">
 	<span>Benutzername</span><br>
