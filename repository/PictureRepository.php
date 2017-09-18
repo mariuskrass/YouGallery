@@ -28,4 +28,25 @@ class PictureRepository extends Repository
             throw new Exception($statement->error);
         }
     }
+
+    public function readAllWithUserName()
+    {
+        $query = "SELECT * FROM {$this->tableName} as p LEFT JOIN user as u on u.id = p.user_id";
+
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->execute();
+
+        $result = $statement->get_result();
+        if (!$result) {
+            throw new Exception($statement->error);
+        }
+
+        // Datensätze aus dem Resultat holen und in das Array $rows speichern
+        $rows = array();
+        while ($row = $result->fetch_object()) {
+            $rows[] = $row;
+        }
+
+        return $rows;
+    }
 }

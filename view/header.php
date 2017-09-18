@@ -32,7 +32,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Feed</a></li>
+        <li class="active"><a href="/feed">Feed</a></li>
         <li><a href="#">Hot</a></li>
         <li><a href="/picture">Bild hochladen</a></li>
       </ul>
