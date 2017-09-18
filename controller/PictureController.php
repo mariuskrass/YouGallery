@@ -1,6 +1,6 @@
 <?php
 
-require_once '../repository/PictureRepository.php';
+require_once('../repository/PictureRepository.php');
 
 /**
  * Siehe Dokumentation im DefaultController.
@@ -18,7 +18,7 @@ class PictureController
 
     public function upload()
     {
-    	$uploaddir = '/var/www/uploads/';
+    	$uploaddir = "../public/var/www/uploads/";
 		$uploadfile = $uploaddir . addslashes(time()) . basename($_FILES['userfile']['name']);
 		$filename = addslashes(time()) . basename($_FILES['userfile']['name']);
 

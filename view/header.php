@@ -36,8 +36,13 @@
       <a class="navbar-brand" href="#">YouGallery</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
+<<<<<<< HEAD
       <ul class="nav navbar-nav hidden">
         <li class="active"><a href="#">Feed</a></li>
+=======
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/feed">Feed</a></li>
+>>>>>>> origin/master
         <li><a href="#">Hot</a></li>
         <li><a href="/picture">Bild hochladen</a></li>
       </ul>
