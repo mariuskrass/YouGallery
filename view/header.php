@@ -34,6 +34,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Feed</a></li>
         <li><a href="#">Hot</a></li>
+        <li><a href="/picture">Bild hochladen</a></li>
       </ul>
       
       <div class="col-sm-3 col-md-3">

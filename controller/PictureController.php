@@ -12,6 +12,7 @@ class PictureController
     	$view = new View('picture_upload');
     	$view->title = 'Bild hochladen';
 		$view->heading = 'Bild hochladen';
+		$view->error = false;
     	$view->display();
     }
 
@@ -28,13 +29,15 @@ class PictureController
 		}
     	
         $pictureRepository = new PictureRepository();
-        
-        $pictureRepository->upload($filename);
+		
+		if (!$error){
+			$pictureRepository->doUpload($filename);
+		}
 		
 		$view = new View('picture_upload');
 		$view->title = 'Bild hochladen';
 		$view->heading = 'Bild hochladen';
 		$view->error = $error;
     	$view->display();
-    }
+	}
 }

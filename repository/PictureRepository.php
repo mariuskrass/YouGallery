@@ -15,7 +15,7 @@ class PictureRepository extends Repository
      */
     protected $tableName = 'picture';
 
-    public function upload($pictureName)
+    public function doUpload($pictureName)
     {    	
         $query = "INSERT INTO $this->tableName (name, user_id) VALUES (?, ?)";
         
@@ -27,7 +27,5 @@ class PictureRepository extends Repository
         if (!$statement->execute()) {
             throw new Exception($statement->error);
         }
-
-        return $pictureName;
     }
 }
