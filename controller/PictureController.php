@@ -11,7 +11,7 @@ class PictureController
     {
     	$view = new View('picture_upload');
     	$view->title = 'Bild hochladen';
-    	$view->heading = 'Bild hochladen';
+		$view->heading = 'Bild hochladen';
     	$view->display();
     }
 
@@ -20,23 +20,21 @@ class PictureController
     	$uploaddir = '/var/www/uploads/';
 		$uploadfile = $uploaddir . addslashes(time()) . basename($_FILES['userfile']['name']);
 		$filename = addslashes(time()) . basename($_FILES['userfile']['name']);
-    	
-    	echo '<pre>';
+
     	if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
-    		echo "Datei ist valide und wurde erfolgreich hochgeladen.\n";
+    		$error = false;
     	} else {
-    		echo "Möglicherweise eine Dateiupload-Attacke!\n";
-    	}
-    	
-    	echo 'Weitere Debugging Informationen:';
-    	print_r($_FILES);
-    	
-    	print "</pre>";
+    		$error = true;
+		}
     	
         $pictureRepository = new PictureRepository();
         
         $pictureRepository->upload($filename);
-        
-        
+		
+		$view = new View('picture_upload');
+		$view->title = 'Bild hochladen';
+		$view->heading = 'Bild hochladen';
+		$view->error = $error;
+    	$view->display();
     }
 }
