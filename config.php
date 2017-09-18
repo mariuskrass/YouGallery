@@ -22,7 +22,7 @@ return array(
     'database' => array(
         'host'     => 'localhost:3307',
         'username' => 'root',
-        'password' => '',
+        'password' => '', 
         'database' => 'you_gallery',
     ),
 
