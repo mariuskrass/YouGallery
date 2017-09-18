@@ -12,6 +12,7 @@ class FeedController
         $view->title = 'Feed';
         $view->heading = 'Feed';
         $view->error = false;
+        $view->id = null;
         $view->display();
     }
 
