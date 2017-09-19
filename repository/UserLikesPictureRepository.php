@@ -25,7 +25,7 @@ class UserLikesPictureRepository extends Repository
         $result = $statement->get_result();
         $object = $result->fetch_object();
 
-        if ($object->id !== null){
+        if ($object !== null){
             return true;
         }else{
             return false;
@@ -42,10 +42,15 @@ class UserLikesPictureRepository extends Repository
             if (!$statement->execute()) {
                 throw new Exception($statement->error);
             }
-
-            return true;
         }else{
-            return false;
+            $query = "DELETE FROM $this->tableName WHERE $userId = ? AND $pictureId = ?";
+            
+                $statement = ConnectionHandler::getConnection()->prepare($query);
+                $statement->bind_param('ii', $userId, $pictureId);
+                
+                if (!$statement->execute()) {
+                    throw new Exception($statement->error);
+                }
         }
     }
 }

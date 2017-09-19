@@ -1,6 +1,7 @@
 <?php
 
 require_once('../repository/PictureRepository.php');
+require_once('../repository/UserLikesPictureRepository.php');
 
 /**
  * Siehe Dokumentation im DefaultController.
@@ -17,5 +18,18 @@ class FeedController
         session_start();
         $view->pictures = $pictureRepository->readFeed($_SESSION['user_id']);
         $view->display();
+    }
+
+    public function like(){
+        $userLikesPictureRepository = new UserLikesPictureRepository();
+
+        session_start();
+        $userId = $_SESSION['user_id'];
+        $pictureId = $_GET['pictureId'];
+
+        $userLikesPictureRepository->like($pictureId, $userId);
+
+        header("Location: /feed");
+        die();
     }
 }
