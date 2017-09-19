@@ -14,7 +14,6 @@ class FeedController
         $view = new View('feed');
         $view->title = 'Feed';
         $view->heading = 'Feed';
-        $view->error = false;
         $view->pictures = $pictureRepository->readAllWithUserName();
         $view->display();
     }

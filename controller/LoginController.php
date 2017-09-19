@@ -1,5 +1,5 @@
 <?php
-require_once '../repository/createUserRepository.php';
+require_once '../repository/UserRepository.php';
 /**
  * Siehe Dokumentation im DefaultController.
  */
@@ -17,7 +17,7 @@ class LoginController
 
     public function doLogin(){
 		$error = false;
-		$userRepository = new createUserRepository();
+		$userRepository = new UserRepository();
 		$benutzername = $_POST['benutzername'];
 		$passwort = sha1($_POST['passwort']);
 		

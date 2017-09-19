@@ -1,6 +1,7 @@
 <?php
 
 require_once '../lib/Repository.php';
+require_once '../repository/PictureRepository.php';
 
 /**
  * Das UserRepository ist zuständig für alle Zugriffe auf die Tabelle "user".
@@ -28,21 +29,21 @@ class UserRepository extends Repository
      *
      * @throws Exception falls das Ausführen des Statements fehlschlägt
      */
-    public function create($firstName, $lastName, $email, $password)
-    {
-        $password = sha1($password);
-
-        $query = "INSERT INTO $this->tableName (firstName, lastName, email, password) VALUES (?, ?, ?, ?)";
-
-        $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('ssss', $firstName, $lastName, $email, $password);
-
-        if (!$statement->execute()) {
-            throw new Exception($statement->error);
-        }
-
-        return $statement->insert_id;
-    }
+     public function create($username, $password, $email, $status)
+     {
+         $password = sha1($password);
+         
+         $query = "INSERT INTO $this->tableName (username, password, email, status) VALUES (?, ?, ?, ?)";
+         
+         $statement = ConnectionHandler::getConnection()->prepare($query);
+         $statement->bind_param('ssss', $username, $password, $email, $status);
+         
+         if (!$statement->execute()) {
+             throw new Exception($statement->error);
+         }
+         
+         return $statement->insert_id;
+     }
 
     public function follow($user1Id, $user2Id){
         $query = "INSERT INTO user_follows_user (user1_id, user2_id) VALUES (?, ?)";
@@ -79,24 +80,9 @@ class UserRepository extends Repository
         $profile->profile_picture = $user->profile_picture;
 
         // get pictures from user
-        $query2 = "SELECT id, name, upload_date FROM picture WHERE user_id = ?";
+        $pictureRepository = new PictureRepository();
 
-        $statement2 = ConnectionHandler::getConnection()->prepare($query2);
-        $statement2->bind_param('i', $userId);
-        $statement2->execute();
-
-        $result2 = $statement2->get_result();
-        if (!$result2){
-            throw new Exception($statement2->error);
-        }
-
-        // Datensätze aus dem Resultat holen und in das Array $rows speichern
-        $rows = array();
-        while ($row = $result2->fetch_object()) {
-            $rows[] = $row;
-        }
-
-        $profile->pictures = $rows;
+        $profile->pictures = $pictureRepository->readAllByUserId($userId);
 
         // get follows
         $profile->followersCount = $this->readFollowersCount($userId);
@@ -118,5 +104,26 @@ class UserRepository extends Repository
 
         $object = $result->fetch_object();
         return $object->followersCount;
+    }
+
+    public function readByKeyword($keyword){
+        $keyword = "%$keyword%";
+        $query = "SELECT id, username, status, profile_picture FROM $this->tableName WHERE username LIKE ?";
+
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('s', $keyword);
+        $statement->execute();
+
+        $result = $statement->get_result();
+        if (!$result) {
+            throw new Exception($statement->error);
+        }
+
+        $rows = array();
+        while ($row = $result->fetch_object()) {
+            $rows[] = $row;
+        }
+
+        return $rows;
     }
 }
