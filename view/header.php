@@ -6,6 +6,9 @@ if($_SESSION['besucht'] == true){
       $class = "glyphicon glyphicon-log-out";
       $style_hidden = "show"; 
       $style_register = "hidden";
+      require_once '../repository/UserRepository.php';
+      $userrepository = new UserRepository();
+      $username = $userrepository->readById($_SESSION['user_id'])->username;
     
 }
 else{
@@ -67,6 +70,7 @@ else{
         </form>
         </div>
     	<ul class="nav navbar-nav navbar-right">
+        <li class="<?=$style_hidden?>"><a href="/profile"><strong>Hey</strong>, <?=$username?></a></li>
         <li class="<?=$style_register?>"><a href="/user"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a href=<?= $link ?>><span class="<?= $class ?>"></span><?= $option_text ?></a></li>
       </ul>
