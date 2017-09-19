@@ -14,9 +14,9 @@ foreach($pictures as $picture) :?>
 
 <div id="feed">
     <div class="feed-element">
-        <div class="feed-header">
+        <div class="feed-header feed-username">
             <img class="feed-profilbild" src='/images/profile.png'>
-            <a class="feed-username" href="/profile?userId=<?=$picture->id?>"><?php echo $picture->username ?></a>
+            <a class="feed-usernam" href="/profile?userId=<?=$picture->id?>"><?php echo $picture->username ?></a>
         </div>
         <img src='/var/www/uploads/<?php echo $picture->name ?>' class="feed-photo">
     </div>
