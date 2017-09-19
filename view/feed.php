@@ -15,13 +15,12 @@ foreach($pictures as $picture) :?>
 <div id="feed">
     <div class="feed-element">
         <div class="feed-header">
-            <img class="feed-profilbild" src='/var/www/uploads/<?php echo $picture->name ?>'>
-            <h3 class="feed-username"><?php echo $profile->username;?></h3>
+            <img class="feed-profilbild" src='/images/profile.png'>
+            <h3 class="feed-username"><?php echo $picture->username ?></h3>
         </div>
-        <img src="images/profile.png" class="feed-photo">
+        <img src='/var/www/uploads/<?php echo $picture->name ?>' class="feed-photo">
     </div>
 </div>
-<h2><?php echo $picture->username ?></h2>
 
 <?php endforeach;?>
 
