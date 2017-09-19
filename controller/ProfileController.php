@@ -23,6 +23,7 @@ class ProfileController
 
     public function follow()
     {
+        $userRepository = new UserRepository();
         $userFollowsUserRepository = new userFollowsUserRepository();
 
         session_start();
@@ -31,8 +32,8 @@ class ProfileController
         $view = new View('profile');
     	$view->title = 'Profil';
 		$view->heading = 'Profil';
-        $userId1 === $userId2 ? $view->error = true : $view->error = false && $userFollowsUserRepository->follow($userId1, $userId2);
-        $view->profile = $userRepository->readProfile($userId1);
+        $view->error = $userFollowsUserRepository->follow($userId1, $userId2);
+        $view->profile = $userRepository->readProfile($userId2);
         $view->display();
     }
 }

@@ -1,4 +1,4 @@
-<form action="follow" method="GET">
+<form action="/profile/follow" method="GET">
 <input type="hidden" name="userId" value="<?php echo $profile->id ?>" />
 <input type="submit" value="Follow">
 </form>

@@ -31,18 +31,37 @@ class UserFollowsUserRepository extends Repository
         return $object->followersCount;
     }
 
-    public function follow($user1Id, $user2Id){
-        $query = "INSERT INTO $this->tableName (user1_id, user2_id) VALUES (?, ?)";
+    public function isFollowing($user1Id, $user2Id){
+        $query = "SELECT * FROM $this->tableName WHERE user1_id = ? AND user2_id = ?";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->bind_param('ii', $user1Id, $user2Id);
+        $statement->execute();
 
-        if (!$statement->execute()) {
-            throw new Exception($statement->error);
+        $result = $statement->get_result();
+        $object = $result->fetch_object();
+
+        if ($object->id !== null){
+            return true;
+        }else{
+            return false;
         }
+    }
 
-        return $statement->insert_id;
+    public function follow($user1Id, $user2Id){
+        if (!$this->isFollowing($user1Id, $user2Id) && $user1Id != $user2Id){
+            $query = "INSERT INTO $this->tableName(user1_id, user2_id) VALUES (?, ?)";
+
+            $statement = ConnectionHandler::getConnection()->prepare($query);
+            $statement->bind_param('ii', $user1Id, $user2Id);
+    
+            if (!$statement->execute()) {
+                throw new Exception($statement->error);
+            }
+
+            return true;
+        }else{
+            return false;
+        }
     }
 }
-
-?>

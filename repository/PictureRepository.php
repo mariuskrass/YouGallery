@@ -49,7 +49,7 @@ class PictureRepository extends Repository
     }
 
     public function readAllByUserId($userId){
-        $query = "SELECT id, name, upload_date FROM picture WHERE user_id = ? ORDER BY upload_date DESC";
+        $query = "SELECT id, name, upload_date FROM $this->tableName WHERE user_id = ? ORDER BY upload_date DESC";
         
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->bind_param('i', $userId);
