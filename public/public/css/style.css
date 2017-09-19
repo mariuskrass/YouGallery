@@ -137,3 +137,35 @@
     text-decoration: none; 
     color: black;
 }
+
+#functionside {
+    width: 5%;
+    height: 20%;
+    position: absolute;
+    margin-left: -5%;
+}
+
+#functionside ul {
+    padding-top: 20%;
+    padding-left: 45%;
+}
+
+#functionside ul li{
+    list-style: none;
+    padding: 1em;
+
+}
+
+#functionside span{
+    font-size: 200%;
+
+}
+
+.iconsside, .iconsside-heart {
+    color:black;
+}
+
+.iconsside-heart:hover {
+    color:red;
+    transition-delay: 0.1ms;
+}
