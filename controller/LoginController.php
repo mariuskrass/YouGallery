@@ -47,13 +47,17 @@ class LoginController
 			$view->display();
 		}
 		else{
-			$view = new View('feed');
-			$view->title = 'Feed';
-			$view->heading = 'Feed';
-			$view->error = $error;
-			$view->id = $user->id;
-			$view->display();
+			feed();
 		}
+	}
+
+	public function feed(){
+		$view = new View('feed');
+		$view->title = 'Feed';
+		$view->heading = 'Feed';
+		$view->error = $error;
+		$view->id = $user->id;
+		$view->display();
 	}
 
 }
