@@ -70,7 +70,7 @@ else{
         </form>
         </div>
     	<ul class="nav navbar-nav navbar-right">
-        <li class="<?=$style_hidden?>"><a href="/profile"><strong>Hey</strong>, <?=$username?></a></li>
+        <li class="<?=$style_hidden?>"><a href="/profile?userId=<?=$_SESSION['user_id']?>"><strong>Hey</strong>, <?=$username?></a></li>
         <li class="<?=$style_register?>"><a href="/user"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a href=<?= $link ?>><span class="<?= $class ?>"></span><?= $option_text ?></a></li>
       </ul>
