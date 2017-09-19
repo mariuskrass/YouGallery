@@ -82,6 +82,7 @@
 
 .feed-photo{
     width: 100%;
+    position: relative;
 }
 
 .feed-header {

@@ -36,13 +36,6 @@ session_start();
         </div>
         <img src="images/profile.png" class="feed-photo">
     </div>
-    <div class="feed-element">
-        <div class="feed-header">
-            <img class="feed-profilbild" src="images/profile.png">
-            <h3 class="feed-username"><?php echo $profile->username;?></h3>
-        </div>
-        <img src="images/profile.png" class="feed-photo">
-    </div>
 </div>
 <!-- <div id="bilder">
 <img src="images/profile.png" id="gallery" width="30%">
@@ -52,10 +45,19 @@ session_start();
 <img src="images/profile.png" id="gallery" width="30%">
 <img src="images/profile.png" id="gallery" width="30%">
 </div> -->
+<div id="feed">
 <?php 
     $path = "var/www/uploads/";
     foreach ($profile->pictures as $picture){
-        echo "<img src='" . $path . $picture->name . "' ><br>";
+        echo "<div class='feed-element'>
+        <div class='feed-header'>
+            <img class='feed-profilbild' src='images/profile.png'>
+            <h3 class='feed-username'><?php echo $profile->username;?></h3>
+        </div>
+        <img src='" . $path . $picture->name . "' class='feed-photo'>
+    </div>";
     }
 ?>
+
+</div>
 
