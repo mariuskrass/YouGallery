@@ -6,3 +6,109 @@
 .show {
     visibility: visible;
 }
+
+.status {
+   font-size: 1em;
+   display: inline-block;
+}
+
+.name {
+    font-size: 2em;
+    display: inline;
+}
+
+#profilbild {
+    border-radius: 50%;
+    display: inline-block;
+    float: left;
+}
+
+#content {
+    padding-top: 1em;
+    padding-left: 1em;
+    display: inline-block;
+}
+
+
+#follower {
+    display: inline-block;
+    float: right;
+    text-align: center;
+    padding-right: 5em;
+}
+
+#followbutton {
+    display: inline-block;
+    padding-top: 7%;
+    vertical-align:middle;
+
+    
+}
+
+#followcount {
+    display: inline-block;
+    vertical-align:middle;
+    padding-left: 10px;
+
+}
+
+#line {
+    width: 100%;
+    border-color: #FFB2B2;
+}
+
+
+#followcount h3 {
+    top: 20;
+    vertical-align:middle;
+}
+#floatright {
+    padding-top: 2%;
+    float: right;
+    padding-right: 10%;
+}
+
+#bilder {
+    text-align: center;
+}
+
+#gallery {
+    padding-top: 4px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+.feed-photo{
+    width: 100%;
+}
+
+.feed-header {
+    vertical-align: middle;
+    padding-bottom: 10px;
+    border: 1px solid #FFB2B2;
+}
+
+.feed-element {
+    margin: auto;
+    width: 40%;
+    padding-bottom: 5%;
+}
+
+.feed-profilbild{
+    border-radius: 50%;
+    width: 10%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+}
+
+
+.feed-username{
+    display: inline-block;
+    padding-left: 10px;
+    font-size: 1.5em;
+    padding-top: 10px;
+}
+
+
