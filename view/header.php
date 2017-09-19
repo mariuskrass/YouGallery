@@ -3,10 +3,12 @@ session_start();
 if($_SESSION['besucht'] == true){
       $option_text = " Logout";
       $link = "/Logout";
+      $class = "glyphicon glyphicon-log-out";
 }
 else{
   $option_text = " Login";
   $link = "/Login";
+  $class = "glyphicon glyphicon-log-in";
 }
 
 ?>
@@ -61,7 +63,7 @@ else{
         </div>
     	<ul class="nav navbar-nav navbar-right">
         <li><a href="/user"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href=<?= $link ?>><span class="glyphicon glyphicon-log-in"></span><?= $option_text ?></a></li>
+        <li><a href=<?= $link ?>><span class="<?= $class ?>"></span><?= $option_text ?></a></li>
       </ul>
     </div>
   </div>
