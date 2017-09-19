@@ -9,6 +9,8 @@ if($_SESSION['besucht'] == true){
 }
 else{
     echo("Failed to login!");
+    header("Location: /login");
+    die();
 }
 
 <<<<<<< HEAD

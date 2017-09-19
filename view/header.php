@@ -1,14 +1,19 @@
-<?php 
+<?php
 session_start();
 if($_SESSION['besucht'] == true){
       $option_text = " Logout";
       $link = "/Logout";
       $class = "glyphicon glyphicon-log-out";
+      $style_hidden = "show"; 
+      $style_register = "hidden";
+    
 }
 else{
   $option_text = " Login";
   $link = "/Login";
   $class = "glyphicon glyphicon-log-in";
+  $style_hidden = "hidden";
+  $style_register = "show"; 
 }
 
 ?>
@@ -25,7 +30,7 @@ else{
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="/css/style.css" rel="stylesheet">
+    <link href="public/css/style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -42,17 +47,17 @@ else{
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
       </button>
-      <a class="navbar-brand" href="#">YouGallery</a>
+      <a class="navbar-brand" href="/">YouGallery</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav ">
+      <ul class="nav navbar-nav <?= $style_hidden ?>">
         <li class="active"><a href="/feed">Feed</a></li>
         <li><a href="#">Hot</a></li>
         <li><a href="/picture">Bild hochladen</a></li>
       </ul>
       
       <div class="col-sm-3 col-md-3">
-        <form class="navbar-form " role="search">
+        <form class="navbar-form <?= $style_hidden ?>" role="search">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Search" name="search" id="search">
             <div class="input-group-btn">
@@ -62,7 +67,7 @@ else{
         </form>
         </div>
     	<ul class="nav navbar-nav navbar-right">
-        <li><a href="/user"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li class="<?=$style_register?>"><a href="/user"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a href=<?= $link ?>><span class="<?= $class ?>"></span><?= $option_text ?></a></li>
       </ul>
     </div>
