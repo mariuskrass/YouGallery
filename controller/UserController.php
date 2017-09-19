@@ -18,7 +18,7 @@ class UserController
 
     public function create()
     {
-    	$userRepository = new createUserRepository();
+    	$userRepository = new UserRepository();
     	$benutzername = $_POST["benutzername"];
     	$passwort = $_POST["passwort"];
 		$email = $_POST["email"];
