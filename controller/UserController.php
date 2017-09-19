@@ -1,6 +1,6 @@
 <?php
 
-require_once '../repository/createUserRepository.php';
+require_once '../repository/UserRepository.php';
 
 /**
  * Siehe Dokumentation im DefaultController.
