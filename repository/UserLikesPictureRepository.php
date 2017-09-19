@@ -23,18 +23,29 @@ class UserLikesPictureRepository extends Repository
         $statement->execute();
         
         $result = $statement->get_result();
-        !$result ? return false : return true;
+        $object = $result->fetch_object();
+
+        if ($object->id !== null){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function like($pictureId, $userId){
-        $query = "INSERT INTO $this->tableName (user_id, picture_id) VALUES(?, ?)";
+        if (!$this->isLiked($pictureId, $userId)){
+            $query = "INSERT INTO $this->tableName (user_id, picture_id) VALUES(?, ?)";
         
-        $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('ii', $userId, $pictureId);
-        
-        if (!$statement->execute()) {
-            throw new Exception($statement->error);
+            $statement = ConnectionHandler::getConnection()->prepare($query);
+            $statement->bind_param('ii', $userId, $pictureId);
+            
+            if (!$statement->execute()) {
+                throw new Exception($statement->error);
+            }
+
+            return true;
+        }else{
+            return false;
         }
     }
 }
-?>
