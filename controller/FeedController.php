@@ -14,7 +14,8 @@ class FeedController
         $view = new View('feed');
         $view->title = 'Feed';
         $view->heading = 'Feed';
-        $view->pictures = $pictureRepository->readAllWithUserName();
+        session_start();
+        $view->pictures = $pictureRepository->readFeed($_SESSION['user_id']);
         $view->display();
     }
 }

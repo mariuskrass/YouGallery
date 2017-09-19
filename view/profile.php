@@ -16,7 +16,7 @@ session_start();
     </div>
 <div id="floatright">
     <div id="followbutton">
-                <form action="follow" method="GET" id="form">
+                <form action="/profile/follow" method="GET" id="form">
                     <input type="hidden" name="userId" id="follow" value="<?php echo $profile->id ?>">
                     <input type="submit" class="btn btn-default <?=$myProfile?>" value="Follow" id="follow">
                 </form> 

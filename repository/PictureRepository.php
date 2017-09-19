@@ -27,11 +27,15 @@ class PictureRepository extends Repository
         }
     }
 
-    public function readAllWithUserName()
+    public function readFeed($userId)
     {
-        $query = "SELECT p.id, p.name, p.upload_date, u.id, u.username, u.profile_picture FROM {$this->tableName} as p LEFT JOIN user as u on u.id = p.user_id ORDER BY p.upload_date DESC";
+        $query = "SELECT * FROM user_follows_user ufu
+            LEFT JOIN picture AS p ON p.user_id = ufu.user2_id
+            LEFT JOIN user AS u ON u.id = ufu.user2_id
+            WHERE ufu.user1_id = ?;";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('i', $userId);
         $statement->execute();
 
         $result = $statement->get_result();

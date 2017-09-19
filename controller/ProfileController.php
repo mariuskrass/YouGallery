@@ -16,7 +16,6 @@ class ProfileController
     	$view = new View('profile');
     	$view->title = 'Profil';
 		$view->heading = '';
-        $view->error = false;
         $view->profile = $userRepository->readProfile($userId);
     	$view->display();
     }
@@ -29,11 +28,9 @@ class ProfileController
         session_start();
         $userId1 = $_SESSION['user_id'];
         $userId2 = $_GET['userId'];
-        $view = new View('profile');
-    	$view->title = 'Profil';
-		$view->heading = 'Profil';
-        $view->error = $userFollowsUserRepository->follow($userId1, $userId2);
-        $view->profile = $userRepository->readProfile($userId2);
-        $view->display();
+        $userFollowsUserRepository->follow($userId1, $userId2);
+
+        header("Location: /profile?userId=$userId2");
+        die();
     }
 }
