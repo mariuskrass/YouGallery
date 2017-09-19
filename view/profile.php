@@ -28,15 +28,6 @@ session_start();
 </div>
 <br>
 <hr id="line">
-<div id="feed">
-    <div class="feed-element">
-        <div class="feed-header">
-            <img class="feed-profilbild" src="images/profile.png">
-            <h3 class="feed-username"><?php echo $profile->username;?></h3>
-        </div>
-        <img src="images/profile.png" class="feed-photo">
-    </div>
-</div>
 <!-- <div id="bilder">
 <img src="images/profile.png" id="gallery" width="30%">
 <img src="images/profile.png" id="gallery" width="30%">
@@ -52,7 +43,7 @@ session_start();
         echo "<div class='feed-element'>
         <div class='feed-header'>
             <img class='feed-profilbild' src='images/profile.png'>
-            <h3 class='feed-username'><?php echo $profile->username;?></h3>
+            <h3 class='feed-username'>$profile->username</h3>
         </div>
         <img src='" . $path . $picture->name . "' class='feed-photo'>
     </div>";
