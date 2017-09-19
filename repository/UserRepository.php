@@ -82,7 +82,9 @@ class UserRepository extends Repository
 
     public function readByKeyword($keyword){
         $keyword = "%$keyword%";
-        $query = "SELECT id, username, status, profile_picture FROM $this->tableName WHERE username LIKE ?";
+        $query = "SELECT u.id, u.username, u.status, u.profile_picture, COUNT(ufu.id) as followersCount FROM user u
+            left join user_follows_user as ufu on ufu.user2_id = u.id
+            WHERE u.username LIKE ?";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->bind_param('s', $keyword);
