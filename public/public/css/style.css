@@ -113,3 +113,12 @@
 }
 
 
+.searchname a:hover {
+    border-bottom: 1px solid #FFB2B2;
+    color: black;
+}
+
+.searchname a{
+    text-decoration: none; 
+    color: black;
+}

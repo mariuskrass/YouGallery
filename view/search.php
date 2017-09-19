@@ -1,6 +1,12 @@
 <?php 
-foreach($result as $user){
-    echo "<h3>$user->username</h3>";
-    echo "<h3>$user->status</h3>";
-}
-?>
+foreach($result as $user) :?>
+    
+<div id='profile' style="border: 1px solid #FFB2B2; padding-top: 1em; padding-left: 1em; padding-bottom: 1.5em;">
+        <img id='profilbild' src='images/profile.png' width='100px'>
+            <div id='content' class='searchname'>
+                <a class='name' href="/profile?userId=<?=$user->id?>"><?=$user->username?></a><br><br>
+                <p class='status'><?=$user->status ?></p>
+                <h3><?=$user->followersCount?></h3>
+            </div>
+
+<?php endforeach;?>
