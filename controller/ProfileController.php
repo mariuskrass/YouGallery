@@ -13,7 +13,7 @@ class ProfileController
         $userId = $_GET['userId'];
     	$view = new View('profile');
     	$view->title = 'Profil';
-		$view->heading = 'Profil';
+		$view->heading = '';
         $view->error = false;
         $view->profile = $userRepository->readProfile($userId);
     	$view->display();
