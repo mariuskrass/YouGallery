@@ -1,4 +1,12 @@
-
+<?php 
+session_start();
+    if($_SESSION['user_id'] == $profile->id){
+        $myProfile = "hidden";
+    }
+    else{
+        $myProfile = "show";
+    }
+?>
 
 <div id="profile">
     <img id="profilbild" src="images/profile.png" width="100px">
@@ -10,7 +18,7 @@
     <div id="followbutton">
                 <form action="follow" method="GET" id="form">
                     <input type="hidden" name="userId" id="follow" value="<?php echo $profile->id ?>">
-                    <input type="submit" class="btn btn-default" value="Follow" id="follow">
+                    <input type="submit" class="btn btn-default <?=$myProfile?>" value="Follow" id="follow">
                 </form> 
     </div>
     <div id="followcount">
