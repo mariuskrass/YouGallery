@@ -47,17 +47,11 @@ class LoginController
 			$view->display();
 		}
 		else{
-			feed();
+			header("Location: /feed");
+			die();
 		}
 	}
 
-	public function feed(){
-		$view = new View('feed');
-		$view->title = 'Feed';
-		$view->heading = 'Feed';
-		$view->error = $error;
-		$view->id = $user->id;
-		$view->display();
-	}
+
 
 }

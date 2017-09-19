@@ -1,3 +1,15 @@
+<?php 
+session_start();
+if($_SESSION['besucht'] == true){
+      $option_text = " Logout";
+      $link = "/Logout";
+}
+else{
+  $option_text = " Login";
+  $link = "/Login";
+}
+
+?>
 <!DOCTYPE html>
 <html lang="de">
   <head>
@@ -49,7 +61,7 @@
         </div>
     	<ul class="nav navbar-nav navbar-right">
         <li><a href="/user"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href=<?= $link ?>><span class="glyphicon glyphicon-log-in"></span><?= $option_text ?></a></li>
       </ul>
     </div>
   </div>
