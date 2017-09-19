@@ -2,6 +2,7 @@
 
 require_once '../lib/Repository.php';
 require_once '../repository/PictureRepository.php';
+require_once '../repository/UserFollowsUserRepository.php';
 
 /**
  * Das UserRepository ist zuständig für alle Zugriffe auf die Tabelle "user".
@@ -45,19 +46,6 @@ class UserRepository extends Repository
          return $statement->insert_id;
      }
 
-    public function follow($user1Id, $user2Id){
-        $query = "INSERT INTO user_follows_user (user1_id, user2_id) VALUES (?, ?)";
-
-        $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('ii', $user1Id, $user2Id);
-
-        if (!$statement->execute()) {
-            throw new Exception($statement->error);
-        }
-
-        return $statement->insert_id;
-    }
-
     public function readProfile($userId){
         // get user
         $query = "SELECT id, username, status, profile_picture FROM $this->tableName WHERE id = ?;";
@@ -85,25 +73,11 @@ class UserRepository extends Repository
         $profile->pictures = $pictureRepository->readAllByUserId($userId);
 
         // get follows
-        $profile->followersCount = $this->readFollowersCount($userId);
+        $userFollowsUserRepository = new UserFollowsUserRepository();
+
+        $profile->followersCount = $userFollowsUserRepository->readFollowersCount($userId);
 
         return $profile;
-    }
-
-    public function readFollowersCount($userId){
-        $query = "SELECT COUNT(*) as followersCount FROM user_follows_user WHERE user2_id = ?;";
-        
-        $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('i', $userId);
-        $statement->execute();
-
-        $result = $statement->get_result();
-        if (!$result) {
-            throw new Exception($statement->error);
-        }
-
-        $object = $result->fetch_object();
-        return $object->followersCount;
     }
 
     public function readByKeyword($keyword){
