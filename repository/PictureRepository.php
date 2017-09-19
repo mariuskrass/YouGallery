@@ -30,12 +30,13 @@ class PictureRepository extends Repository
     public function readFeed($userId)
     {
         $query = "SELECT * FROM user_follows_user ufu
-            LEFT JOIN picture AS p ON p.user_id = ufu.user2_id
-            LEFT JOIN user AS u ON u.id = ufu.user2_id
-            WHERE ufu.user1_id = ?;";
+            LEFT JOIN picture AS p ON p.user_id = ufu.user2_id OR p.user_id = ?
+            LEFT JOIN user AS u ON u.id = ufu.user2_id OR u.id = ?
+            WHERE ufu.user1_id = ?
+            ORDER BY p.upload_date;";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('i', $userId);
+        $statement->bind_param('iii', $userId, $userId, $userId);
         $statement->execute();
 
         $result = $statement->get_result();
