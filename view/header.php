@@ -50,7 +50,7 @@ else{
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav <?= $style_hidden ?>">
             <li class="active"><a href="/feed">Feed</a></li>
-            <li><a href="#">Hot</a></li>
+            <li><a href="/hot">Hot</a></li>
             <li><a href="/picture">Bild hochladen</a></li>
           </ul>
         

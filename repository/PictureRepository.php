@@ -54,6 +54,39 @@ class PictureRepository extends Repository
         return $rows;
     }
 
+    // Fotos für Hot laden
+    public function readHot($userId)
+    {
+        $userLikesPictureRepository = new UserLikesPictureRepository();
+
+        $query = "SELECT u.id as userId, u.username, u.profile_picture, p.id, p.name, p.upload_date FROM $this->tableName p
+            LEFT JOIN user AS u ON u.id = p.user_id";
+
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('i', $userId);
+        $statement->execute();
+
+        $result = $statement->get_result();
+        if (!$result) {
+            throw new Exception($statement->error);
+        }
+
+        // Datensätze aus dem Resultat holen und in das Array $rows speichern
+        $rows = array();
+        while ($row = $result->fetch_object()) {
+            $rows[] = $row;
+        }
+
+        foreach($rows as $row){
+            $row->isLiked = $userLikesPictureRepository->isLiked($row->id, $userId);
+            $row->likesCount = $userLikesPictureRepository->likesCount($row->id);
+        }
+
+        arsort($rows);
+
+        return $rows;
+    }
+
     // Fotos fürs Profil laden
     public function readAllByUserId($userId, $sessionUserId){
         $userLikesPictureRepository = new UserLikesPictureRepository();
