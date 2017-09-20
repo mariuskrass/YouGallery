@@ -7,7 +7,6 @@ session_start();
         $myProfile = "show";
     }
     if($_SESSION['besucht'] == true){
-        echo("Logged in");
     }
     else{
         echo("Failed to login!");
