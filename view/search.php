@@ -17,7 +17,7 @@ if($user->profile_picture != null){
 ?>
 
 <div id='profile' style="border: 1px solid #FFB2B2; padding-top: 1em; padding-left: 1em; padding-bottom: 1.5em;">
-    <img id='profilbild' src='<?=$imagesrc?>' width='100px'>
+    <img id='profilbild' src='<?=$imagesrc?>'>
     <div id='content' class='searchname'>
         <a class='name' href="/profile?userId=<?=$user->id?>"><?=$user->username?></a><br><br>
         <p class='status'><?=$user->status ?></p>
