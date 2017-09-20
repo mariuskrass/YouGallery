@@ -29,17 +29,22 @@ class UserController
 			if($user->username == $benutzername || strlen($benutzername) > 25 || strlen($benutzername) == 0){
 				$error = true;
 			}
-			if(strlen($passwort) == 0){
-				$error = true;
-			}
 			else{
-				if($user->email == $email || strlen($email) == 0){
+				if(strlen($passwort) == 0){
 					$error = true;
+					
 				}
+				
 				else{
-					$error = false;
+					if($user->email == $email || strlen($email) == 0){
+					$error = true;
+					}
+					else{
+						$error = false;
+					}
 				}
 			}
+
 		}
 		// Falls Eingaben nicht korrekt, Seite mit Fehler laden.
 		if ($error){
