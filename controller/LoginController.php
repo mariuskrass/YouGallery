@@ -18,25 +18,32 @@ class LoginController
     public function doLogin(){
 		$error = false;
 		$userRepository = new UserRepository();
-		$benutzername = htmlspecialchars($_POST['benutzername']);
-		$passwort = htmlspecialchars(sha1($_POST['passwort']));
-		
-		foreach($userRepository->readAll() as $user){
-			if($user->username == $benutzername){
-				if($user->password == $passwort){
-					session_start();
-					$_SESSION['user_id'] = $user->id;
-					$_SESSION['besucht'] = true;
-					$error = false;
+		if(isset($_POST['benutzername']) && isset($_POST['passwort'])){
+			$benutzername = htmlspecialchars($_POST['benutzername']);
+			$passwort = htmlspecialchars(sha1($_POST['passwort']));
+
+			foreach($userRepository->readAll() as $user){
+				if($user->username == $benutzername){
+					if($user->password == $passwort){
+						session_start();
+						$_SESSION['user_id'] = $user->id;
+						$_SESSION['besucht'] = true;
+						$error = false;
+					}
+					else{
+						$error = true;
+					}
 				}
 				else{
 					$error = true;
-				}
+				}	
 			}
-			else{
-				$error = true;
-			}	
+
 		}
+		else {
+			$error = true;
+		}
+		
 	
 
 		if($error){
