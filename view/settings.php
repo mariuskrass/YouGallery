@@ -12,6 +12,7 @@ $function = "/profile/user/";
     <div id="content">
         <h3 class="name"><?php echo $profile->username;?></h3><br><br>
         <p class="status"><?php echo $profile->status;?></p>
+        <p>Ändere dein Status oder dein Profilbild hier</p>
     </div>
     <div id="floatright">
         <div id="followbutton">
@@ -19,10 +20,22 @@ $function = "/profile/user/";
                 <input type="submit" class="btn btn-default <?=$bearbeiten?>" value="Speichern" id="follow">
             </form>
         </div>
-        <div id="followcount">
-            <h3 id="count_follower"><?php echo $profile->followersCount;?> Follower</h3>
-        </div>
     </div>
 </div>
 <br>
 <hr id="line">
+<div>
+    <form enctype="multipart/form-data" action="/picture/upload" method="POST">
+    <h3><strong>Ändere dein Profilbild:</strong></h3>
+        <!-- MAX_FILE_SIZE muss vor dem Dateiupload Input Feld stehen -->
+        <input type="hidden" name="MAX_FILE_SIZE" value="10000000" class="btn btn-default"/>
+        <!-- Der Name des Input Felds bestimmt den Namen im $_FILES Array -->
+        Diese Datei hochladen: <input name="userfile" type="file" accept="image/*" class="btn btn-default" /><br>
+
+    </form>
+    <hr id="line">
+    <form>
+        <h3><strong>Ändere deine Status hier:</strong></h3>
+        Status <input type="text" value="<?=$profile->status?>" style="width:60;" ><br>
+    </form>
+</div>

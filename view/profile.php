@@ -5,10 +5,12 @@ if($_SESSION['user_id'] == $profile->id){
     $myProfile = "hidden";
     $bearbeiten = "show";
     $function = "/settings";
+    $style = "show";
 }else{
     $myProfile = "show";
     $bearbeiten = "hidden";
     $function = "/profile/follow";
+    $style = "hidden";
 }
 
 if($profile->isFollowing){
@@ -36,6 +38,8 @@ if($_SESSION['besucht'] != true){
             <form action="<?=$function?>" method="GET" id="form">
                 <input type="hidden" name="userId" id="follow" value="<?php echo $profile->id ?>">
                 <input type="submit" class="btn btn-default <?=$myProfile?>" value="<?=$followText?>" id="follow">
+            </form>
+            <form action="<?=$function?>" method="GET" id="form" style="<?=$style?>">
                 <input type="submit" class="btn btn-default <?=$bearbeiten?>" value="Bearbeiten" id="follow">
             </form>
         </div>
