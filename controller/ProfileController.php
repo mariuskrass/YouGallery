@@ -14,8 +14,8 @@ class ProfileController
     
         if(isset($_GET['userId'])){
             session_start();
-            $userId1 = $_SESSION['user_id'];
-            $userId2 = $_GET['userId'];
+            $userId1 = htmlspecialchars($_SESSION['user_id']);
+            $userId2 = htmlspecialchars($_GET['userId']);
             $view = new View('profile');
             $view->title = 'Profil';
             $view->heading = '';

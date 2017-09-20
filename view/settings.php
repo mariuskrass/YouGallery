@@ -4,7 +4,7 @@ if($_SESSION['besucht'] != true){
     header("Location: /login");
     die();
 }
-
+$function = "/profile/user/";
 ?>
 
 <div id="profile">
@@ -15,10 +15,8 @@ if($_SESSION['besucht'] != true){
     </div>
     <div id="floatright">
         <div id="followbutton">
-            <form action="<?=$function?>" method="GET" id="form">
-                <input type="hidden" name="userId" id="follow" value="<?php echo $profile->id ?>">
-                <input type="submit" class="btn btn-default <?=$myProfile?>" value="<?=$followText?>" id="follow">
-                <input type="submit" class="btn btn-default <?=$bearbeiten?>" value="Bearbeiten" id="follow">
+            <form action="<?=$function?><?=$profile->userId?>" method="GET" id="form">
+                <input type="submit" class="btn btn-default <?=$bearbeiten?>" value="Speichern" id="follow">
             </form>
         </div>
         <div id="followcount">
@@ -28,27 +26,3 @@ if($_SESSION['besucht'] != true){
 </div>
 <br>
 <hr id="line">
-<div id="feed">
-    <?php 
-
-    $path = "var/www/uploads/";
-    foreach ($profile->pictures as $picture){
-        $picture->isLiked ? $heartClass = "glyphicon glyphicon-heart heartred" : $heartClass = "glyphicon glyphicon-heart-empty";
-        echo "<div class='feed-element'>
-        <div class='feed-header'>
-            <img class='feed-profilbild' src='images/profile.png'>
-            <h3 class='feed-username'>$profile->username</h3>
-        </div>
-        <div id='functionside'>
-            <ul>
-                <li><a class='iconsside-count' href='/feed/like?pictureId=$picture->id'>$picture->likesCount</a</li>
-                <li><a class='iconsside-heart' href='/profile/like?pictureId=$picture->id&userId=$profile->id'><span class='$heartClass'></a></span></li>
-                <li><a class='iconsside' href=''><span class='glyphicon glyphicon-comment'></a></span></li>
-            </ul>
-        </div>
-        <img src='" . $path . $picture->name . "' class='feed-photo'>
-    </div>";
-    }
-
-    ?>
-</div>
