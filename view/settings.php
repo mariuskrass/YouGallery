@@ -12,7 +12,7 @@ $function = "/profile/user/";
     <div id="content">
         <h3 class="name"><?php echo $profile->username;?></h3><br><br>
         <p class="status"><?php echo $profile->status;?></p>
-        <p>Ändere dein Status oder dein Profilbild hier</p>
+        <p style="font-weight: bold;">Ändere deinen Status oder dein Profilbild hier</p>
     </div>
     <div id="floatright">
         <div id="followbutton">
@@ -36,6 +36,6 @@ $function = "/profile/user/";
     <hr id="line">
     <form>
         <h3><strong>Ändere deine Status hier:</strong></h3>
-        Status <input type="text" value="<?=$profile->status?>" style="width:60;" ><br>
+        <h4 style="display: inline;">Status: </h4><input type="text" value="<?=$profile->status?>" placeholder="Status" style="border: none; border-bottom: 1px solid #FFB2B2; width: 25em; line-height: 2em;" id="input_status"><br>
     </form>
 </div>
