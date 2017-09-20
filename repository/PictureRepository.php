@@ -55,7 +55,6 @@ class PictureRepository extends Repository
 
         foreach($rows as $row){
             $row->isLiked = $userLikesPictureRepository->isLiked($row->id, $userId);
-            var_dump($row->isLiked);
         }
 
         return $rows;
