@@ -101,13 +101,26 @@ class UserRepository extends Repository
         return $rows;
     }
 
-    public function updateProfile($id, $status, $profilePicture){
+    public function updateProfile($id, $status){
         $query = "UPDATE $this->tableName
-            SET status = ?, profile_picture = ?
+            SET status = ?
             WHERE id = ?";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('ssi', $status, $profilePicture, $id);
+        $statement->bind_param('si', $status, $id);
+
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+    }
+
+    public function updateProfilePicture($id, $profilePicture){
+        $query = "UPDATE $this->tableName
+            SET profile_picture = ?
+            WHERE id = ?";
+
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('si', $profilePicture, $id);
 
         if (!$statement->execute()) {
             throw new Exception($statement->error);

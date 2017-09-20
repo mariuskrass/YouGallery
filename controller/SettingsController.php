@@ -19,8 +19,8 @@ class SettingsController extends Repository
     public function save(){
         $userRepository = new UserRepository();
         
-        $id = htmlspecialchar($_POST['id']);
-        $status = htmlspecialchar($_POST['status']);
+        $id = htmlspecialchars($_SESSION['user_id']);
+        $status = htmlspecialchars($_POST['status']);
 
         $userRepository->updateProfile($id, $status);
 
@@ -29,6 +29,10 @@ class SettingsController extends Repository
     }
 
     public function upload(){
+        $userRepository = new UserRepository();
+
+        session_start();
+        $id = $_SESSION['user_id'];
         $uploaddir = "../public/var/www/uploads/";
 		$uploadfile = $uploaddir . addslashes(time()) . basename($_FILES['userfile']['name']);
 		$filename = addslashes(time()) . basename($_FILES['userfile']['name']);
@@ -42,11 +46,12 @@ class SettingsController extends Repository
 				$error = true;
 			}
 		}
-    	
-        $pictureRepository = new PictureRepository();
 		
 		if (!$error){
-            // funktion
+            $userRepository->updateProfilePicture($id, $filename);
         }
+
+        header("Location: /profile?userId=$id");
+        die();
     }
 }

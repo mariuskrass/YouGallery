@@ -25,7 +25,7 @@ $function = "/settings/save";
 <br>
 <hr id="line">
 <div>
-    <form enctype="multipart/form-data" action="/picture/upload" method="POST">
+    <form enctype="multipart/form-data" action="/settings/upload" method="POST">
     <h3><strong>Ändere dein Profilbild:</strong></h3>
         <!-- MAX_FILE_SIZE muss vor dem Dateiupload Input Feld stehen -->
         <input type="hidden" name="MAX_FILE_SIZE" value="10000000" class="btn btn-default"/>
@@ -37,7 +37,6 @@ $function = "/settings/save";
     <hr id="line">
     <form action="<?=$function?>" method="POST">
         <h3><strong>Ändere deine Status hier:</strong></h3>
-        <input type="hidden" name="profileId" value="<?=$profile->id?>">
         <h4 style="display: inline;">Status: </h4><input name="status" type="text" value="<?=$profile->status?>" placeholder="Status" style="border: none; border-bottom: 1px solid #FFB2B2; width: 25em; line-height: 2em;" id="input_status"><br>
         <br>
         <input type="submit" class="btn btn-default <?=$bearbeiten?>" value="Speichern" id="follow">
