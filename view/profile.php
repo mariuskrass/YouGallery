@@ -1,6 +1,6 @@
 <?php 
 session_start();
-    if($_SESSION['user_id'] == $profile->id){
+    if($$_SESSION['user_id'] == $profile->id){
         $myProfile = "hidden";
     }
     else{
@@ -47,11 +47,18 @@ session_start();
 <?php 
     $path = "var/www/uploads/";
     foreach ($profile->pictures as $picture){
+        $picture->isLiked ? $heartClass = "glyphicon glyphicon-heart" : $heartClass = "glyphicon glyphicon-heart-empty";
         echo "<div class='feed-element'>
         <div class='feed-header'>
             <img class='feed-profilbild' src='images/profile.png'>
             <h3 class='feed-username'>$profile->username</h3>
         </div>
+        <div id='functionside'>
+        <ul>
+            <li><a class='iconsside-heart' href='/profile/like?pictureId=$picture->id&userId=$profile->id'><span class='$heartClass'></a></span></li>
+            <li><a class='iconsside' href=''><span class='glyphicon glyphicon-comment'></a></span></li>
+        </ul>
+    </div>
         <img src='" . $path . $picture->name . "' class='feed-photo'>
     </div>";
     }

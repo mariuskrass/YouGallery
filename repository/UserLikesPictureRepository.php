@@ -43,7 +43,7 @@ class UserLikesPictureRepository extends Repository
                 throw new Exception($statement->error);
             }
         }else{
-            $query = "DELETE FROM $this->tableName WHERE $userId = ? AND $pictureId = ?";
+            $query = "DELETE FROM $this->tableName WHERE user_id = ? AND picture_id = ?";
             
                 $statement = ConnectionHandler::getConnection()->prepare($query);
                 $statement->bind_param('ii', $userId, $pictureId);

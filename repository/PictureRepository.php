@@ -60,7 +60,9 @@ class PictureRepository extends Repository
         return $rows;
     }
 
-    public function readAllByUserId($userId){
+    public function readAllByUserId($userId, $sessionUserId){
+        $userLikesPictureRepository = new UserLikesPictureRepository();
+
         $query = "SELECT id, name, upload_date FROM $this->tableName WHERE user_id = ? ORDER BY upload_date DESC";
         
         $statement = ConnectionHandler::getConnection()->prepare($query);
@@ -76,6 +78,10 @@ class PictureRepository extends Repository
         $rows = array();
         while ($row = $result->fetch_object()) {
             $rows[] = $row;
+        }
+
+        foreach($rows as $row){
+            $row->isLiked = $userLikesPictureRepository->isLiked($row->id, $sessionUserId);
         }
 
         return $rows;
