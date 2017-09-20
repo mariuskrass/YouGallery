@@ -186,3 +186,17 @@
 .heartred {
     color: red;
 }
+
+.iconsside-count {
+    color: black;
+    font-size: 1.2em;
+    text-align: center;
+    padding-left: 45%;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+.iconsside-count:hover {
+    text-decoration: none;
+    cursor: default;
+}

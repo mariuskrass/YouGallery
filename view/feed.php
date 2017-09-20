@@ -7,6 +7,7 @@ if($_SESSION['besucht'] != true){
     header("Location: /login");
     die();
 }
+$countLikes = 0;
 
 foreach($pictures as $picture) :?>
 
@@ -22,6 +23,7 @@ $picture->isLiked ? $heartClass = "glyphicon glyphicon-heart heartred" : $heartC
         </div>
         <div id="functionside">
             <ul>
+            <li><a class="iconsside-count" href="/feed/like?pictureId=<?=$picture->id?>"><?=$countLikes?></a</li>
                 <li><a class="iconsside-heart" href="/feed/like?pictureId=<?=$picture->id?>"><span class="<?=$heartClass?>"></a></span></li>
                 <li><a class="iconsside" href=""><span class="glyphicon glyphicon-comment"></a></span></li>
             </ul>
