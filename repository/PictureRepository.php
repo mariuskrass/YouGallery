@@ -3,19 +3,11 @@
 require_once '../lib/Repository.php';
 require_once '../repository/UserLikesPictureRepository.php';
 
-/**
- * Das UserRepository ist zuständig für alle Zugriffe auf die Tabelle "user".
- *
- * Die Ausführliche Dokumentation zu Repositories findest du in der Repository Klasse.
- */
 class PictureRepository extends Repository
 {
-    /**
-     * Diese Variable wird von der Klasse Repository verwendet, um generische
-     * Funktionen zur Verfügung zu stellen.
-     */
     protected $tableName = 'picture';
 
+    // Foto hochladen
     public function doUpload($pictureName, $userId)
     {    	
         $query = "INSERT INTO $this->tableName (name, user_id) VALUES (?, ?)";
@@ -28,6 +20,7 @@ class PictureRepository extends Repository
         }
     }
 
+    // Fotos für den Feed laden
     public function readFeed($userId)
     {
         $userLikesPictureRepository = new UserLikesPictureRepository();
@@ -60,6 +53,7 @@ class PictureRepository extends Repository
         return $rows;
     }
 
+    // Fotos fürs Profil laden
     public function readAllByUserId($userId, $sessionUserId){
         $userLikesPictureRepository = new UserLikesPictureRepository();
 

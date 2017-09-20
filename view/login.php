@@ -1,18 +1,16 @@
 <?php 
+
 session_start();
-	// Falls vom Controller ein Error kommt, wird eine Fehlermeldung ausgegeben.
-	if($error){
-		echo('<div class="alert alert-danger"><strong>Error!</strong> Benutzername oder Passwort falsch!
-		</div>');
-	}
-	// Kontrolliert ob eine gültige Session aktiv ist.
-	if($_SESSION['besucht'] == true){
-		header("Location: /feed"); /* Browser umleiten */
-		
-		exit;
-	}
-
-
+// Falls vom Controller ein Error kommt, wird eine Fehlermeldung ausgegeben.
+if($error){
+	echo('<div class="alert alert-danger"><strong>Error!</strong> Benutzername oder Passwort falsch!
+	</div>');
+}
+// Kontrolliert ob eine gültige Session aktiv ist.
+if($_SESSION['besucht'] == true){
+	header("Location: /feed"); /* Browser umleiten */
+	exit;
+}
 	
 ?>
 <form action="/login/doLogin" method="POST">

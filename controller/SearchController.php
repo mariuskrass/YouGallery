@@ -14,7 +14,11 @@ class SearchController
         $view = new View('search');
         $view->title = 'Suche';
         $view->heading = 'Suche';
-        $view->result = $userRepository->readByKeyword(htmlspecialchars($_GET['keyword']));
+        if(isset($_GET['keyword'])){
+            $view->result = $userRepository->readByKeyword(htmlspecialchars($_GET['keyword']));
+        }else{
+            $view->result = $userRepository->readByKeyword('');
+        }
         $view->display();
     }
 }

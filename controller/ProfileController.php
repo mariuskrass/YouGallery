@@ -12,14 +12,18 @@ class ProfileController
     {
         $userRepository = new UserRepository();
     
-        session_start();
-        $userId1 = $_SESSION['user_id'];
-        $userId2 = $_GET['userId'];
-    	$view = new View('profile');
-    	$view->title = 'Profil';
-		$view->heading = '';
-        $view->profile = $userRepository->readProfile($userId2, $userId1);
-    	$view->display();
+        if(isset($_GET['userId'])){
+            session_start();
+            $userId1 = $_SESSION['user_id'];
+            $userId2 = $_GET['userId'];
+            $view = new View('profile');
+            $view->title = 'Profil';
+            $view->heading = '';
+            $view->profile = $userRepository->readProfile($userId2, $userId1);
+            $view->display();
+        }else{
+            header("Location: /login");
+        }
     }
 
     public function follow()

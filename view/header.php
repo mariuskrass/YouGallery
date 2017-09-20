@@ -1,16 +1,16 @@
 <?php
+
 error_reporting(0);
 session_start();
 if($_SESSION['besucht'] == true){
-      $option_text = " Logout";
-      $link = "/Logout";
-      $class = "glyphicon glyphicon-log-out";
-      $style_hidden = "show"; 
-      $style_register = "hidden";
-      require_once '../repository/UserRepository.php';
-      $userrepository = new UserRepository();
-      $username = $userrepository->readById($_SESSION['user_id'])->username;
-    
+    $option_text = " Logout";
+    $link = "/Logout";
+    $class = "glyphicon glyphicon-log-out";
+    $style_hidden = "show"; 
+    $style_register = "hidden";
+    require_once '../repository/UserRepository.php';
+    $userrepository = new UserRepository();
+    $username = $userrepository->readById($_SESSION['user_id'])->username;
 }
 else{
   $option_text = " Login";
@@ -18,7 +18,6 @@ else{
   $class = "glyphicon glyphicon-log-in";
   $style_hidden = "hidden";
   $style_register = "show"; 
-
 }
 
 ?>
@@ -36,49 +35,43 @@ else{
 
     <!-- Custom styles for this template -->
     <link href="public/css/style.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
   <body>
-	<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span> 
-      </button>
-      <a class="navbar-brand navcolor" href="/" style="font-size: 1.2em; color: #7F5959;"><span class="glyphicon glyphicon-camera" style="font-size: 1.2em; color: #7F5959;"></span> YouGallery</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav <?= $style_hidden ?>">
-        <li class="active"><a href="/feed">Feed</a></li>
-        <li><a href="#">Hot</a></li>
-        <li><a href="/picture">Bild hochladen</a></li>
-      </ul>
-      
-      <div class="col-sm-3 col-md-3">
-        <form class="navbar-form <?= $style_hidden ?>" role="search" action="/search" method="GET">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" name="keyword" id="search">
-            <div class="input-group-btn">
-                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search" style="color: #FFB2B2;"></i></button>
-            </div>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span> 
+          </button>
+          <a class="navbar-brand navcolor" href="/" style="font-size: 1.2em; color: #7F5959;"><span class="glyphicon glyphicon-camera" style="font-size: 1.2em; color: #7F5959;"></span> YouGallery</a>
         </div>
-        </form>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav <?= $style_hidden ?>">
+            <li class="active"><a href="/feed">Feed</a></li>
+            <li><a href="#">Hot</a></li>
+            <li><a href="/picture">Bild hochladen</a></li>
+          </ul>
+        
+          <div class="col-sm-3 col-md-3">
+            <form class="navbar-form <?= $style_hidden ?>" role="search" action="/search" method="GET">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" name="keyword" id="search">
+                  <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search" style="color: #FFB2B2;"></i></button>
+                  </div>
+              </div>
+            </form>
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="<?=$style_hidden?>"><a href="/profile?userId=<?=$_SESSION['user_id']?>"><strong>Hey</strong>, <?=$username?></a></li>
+            <li class="<?=$style_register?>"><a href="/user"><span class="glyphicon glyphicon-user"></span> Registrieren</a></li>
+            <li><a href=<?= $link ?>><span class="<?= $class ?>"></span><?= $option_text ?></a></li>
+          </ul>
         </div>
-    	<ul class="nav navbar-nav navbar-right">
-        <li class="<?=$style_hidden?>"><a href="/profile?userId=<?=$_SESSION['user_id']?>"><strong>Hey</strong>, <?=$username?></a></li>
-        <li class="<?=$style_register?>"><a href="/user"><span class="glyphicon glyphicon-user"></span> Registrieren</a></li>
-        <li><a href=<?= $link ?>><span class="<?= $class ?>"></span><?= $option_text ?></a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+      </div>
+    </nav>
 
     <div class="container">
 

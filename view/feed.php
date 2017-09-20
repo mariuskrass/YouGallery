@@ -1,14 +1,12 @@
 <?php 
+
 // Kontrolliert ob eine gültige Session aktiv ist.
 session_start();
-if($_SESSION['besucht'] == true){
-}
-else{
+if($_SESSION['besucht'] != true){
     echo("Failed to login!");
     header("Location: /login");
     die();
 }
-
 
 foreach($pictures as $picture) :?>
 

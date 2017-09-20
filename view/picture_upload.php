@@ -1,18 +1,17 @@
 <?php
-    if($error){
-        echo('<div class="alert alert-danger">Datei konnte nicht hochgeladen werden!</div>');
-    }
-    if($error === false){
-        echo('<div class="alert alert-success">Datei wurde erfolgreich hochgeladen!</div>');
-    }
-    if($_SESSION['besucht'] == true){
 
-    }
-    else{
-        echo("Failed to login!");
-        header("Location: /login");
-        die();
-    }
+if($error){
+    echo('<div class="alert alert-danger">Datei konnte nicht hochgeladen werden!</div>');
+}
+if($error === false){
+    echo('<div class="alert alert-success">Datei wurde erfolgreich hochgeladen!</div>');
+}
+if($_SESSION['besucht'] != true){
+    echo("Failed to login!");
+    header("Location: /login");
+    die();
+}
+
 ?>
 <form enctype="multipart/form-data" action="/picture/upload" method="POST">
     <!-- MAX_FILE_SIZE muss vor dem Dateiupload Input Feld stehen -->
