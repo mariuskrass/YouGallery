@@ -1,6 +1,7 @@
 <?php
 
 require_once '../lib/Repository.php';
+require_once '../repository/UserLikesPictureRepository.php';
 
 /**
  * Das UserRepository ist zuständig für alle Zugriffe auf die Tabelle "user".
@@ -29,11 +30,13 @@ class PictureRepository extends Repository
 
     public function readFeed($userId)
     {
-        $query = "SELECT * FROM user_follows_user ufu
+        $userLikesPictureRepository = new UserLikesPictureRepository();
+
+        $query = "SELECT u.id, u.username, u.profile_picture, p.id, p.name, p.upload_date FROM user_follows_user ufu
             LEFT JOIN picture AS p ON p.user_id = ufu.user2_id
             LEFT JOIN user AS u ON u.id = ufu.user2_id
             WHERE ufu.user1_id = ?
-            ORDER BY p.upload_date;";
+            ORDER BY p.upload_date DESC;";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->bind_param('i', $userId);
@@ -48,6 +51,11 @@ class PictureRepository extends Repository
         $rows = array();
         while ($row = $result->fetch_object()) {
             $rows[] = $row;
+        }
+
+        foreach($rows as $row){
+            $row->isLiked = $userLikesPictureRepository->isLiked($row->id, $userId);
+            var_dump($row->isLiked);
         }
 
         return $rows;

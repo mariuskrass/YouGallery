@@ -18,8 +18,8 @@ class LoginController
     public function doLogin(){
 		$error = false;
 		$userRepository = new UserRepository();
-		$benutzername = $_POST['benutzername'];
-		$passwort = sha1($_POST['passwort']);
+		$benutzername = htmlspecialchars($_POST['benutzername']);
+		$passwort = htmlspecialchars(sha1($_POST['passwort']));
 		
 		foreach($userRepository->readAll() as $user){
 			if($user->username == $benutzername){

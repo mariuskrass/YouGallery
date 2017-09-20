@@ -19,9 +19,9 @@ class UserController
     public function create()
     {
     	$userRepository = new UserRepository();
-    	$benutzername = $_POST["benutzername"];
-    	$passwort = $_POST["passwort"];
-		$email = $_POST["email"];
+    	$benutzername = htmlspecialchars($_POST["benutzername"]);
+    	$passwort = htmlspecialchars($_POST["passwort"]);
+		$email = htmlspecialchars($_POST["email"]);
 		$status = "I'm new on YouGallery";
 		$error = false;
 		foreach($userRepository->readAll() as $user){

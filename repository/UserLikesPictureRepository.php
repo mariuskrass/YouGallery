@@ -15,7 +15,7 @@ class UserLikesPictureRepository extends Repository
      */
     protected $tableName = 'user_likes_picture';
 
-    private function isLiked($pictureId, $userId){
+    public function isLiked($pictureId, $userId){
         $query = "SELECT * FROM $this->tableName WHERE picture_id = ? AND user_id = ?";
         
         $statement = ConnectionHandler::getConnection()->prepare($query);
@@ -30,7 +30,7 @@ class UserLikesPictureRepository extends Repository
         }else{
             return false;
         }
-    }
+    }   
 
     public function like($pictureId, $userId){
         if (!$this->isLiked($pictureId, $userId)){

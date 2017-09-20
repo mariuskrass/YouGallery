@@ -11,6 +11,10 @@ else{
 
 foreach($pictures as $picture) :?>
 
+<?php
+$picture->isLiked ? $heartClass = "glyphicon glyphicon-heart" : $heartClass = "glyphicon glyphicon-heart-empty";
+?>
+
 <div id="feed">
     <div class="feed-element">
         <div class="feed-header feed-username">
@@ -19,7 +23,7 @@ foreach($pictures as $picture) :?>
         </div>
         <div id="functionside">
             <ul>
-                <li><a class="iconsside-heart" href="/feed/like?pictureId=<?=$picture->id?>"><span class="glyphicon glyphicon-heart-empty"></a></span></li>
+                <li><a class="iconsside-heart" href="/feed/like?pictureId=<?=$picture->id?>"><span class="<?=$heartClass?>"></a></span></li>
                 <li><a class="iconsside" href=""><span class="glyphicon glyphicon-comment"></a></span></li>
             </ul>
         </div>

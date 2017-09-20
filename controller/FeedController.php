@@ -24,8 +24,8 @@ class FeedController
         $userLikesPictureRepository = new UserLikesPictureRepository();
 
         session_start();
-        $userId = $_SESSION['user_id'];
-        $pictureId = $_GET['pictureId'];
+        $userId = htmlspecialchars($_SESSION['user_id']);
+        $pictureId = htmlspecialchars($_GET['pictureId']);
 
         $userLikesPictureRepository->like($pictureId, $userId);
 

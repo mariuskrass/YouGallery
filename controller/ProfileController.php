@@ -26,8 +26,8 @@ class ProfileController
         $userFollowsUserRepository = new userFollowsUserRepository();
 
         session_start();
-        $userId1 = $_SESSION['user_id'];
-        $userId2 = $_GET['userId'];
+        $userId1 = htmlspecialchars($_SESSION['user_id']);
+        $userId2 = htmlspecialchars($_GET['userId']);
         $userFollowsUserRepository->follow($userId1, $userId2);
 
         header("Location: /profile?userId=$userId2");
