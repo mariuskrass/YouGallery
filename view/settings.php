@@ -5,10 +5,16 @@ if($_SESSION['besucht'] != true){
     die();
 }
 $function = "/settings/save";
+
+if($profile->profile_picture != null){
+    $imagesrc = "var/www/uploads/" . $profile->profile_picture;
+}else{
+    $imagesrc = "images/profile.png";
+}
 ?>
 
 <div id="profile">
-    <img id="profilbild" src="images/profile.png" width="100px">
+    <img id="profilbild" src="<?=$imagesrc?>" width="100px">
     <div id="content">
         <h3 class="name"><?php echo $profile->username;?></h3><br><br>
         <p class="status"><?php echo $profile->status;?></p>

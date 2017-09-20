@@ -25,10 +25,16 @@ if($_SESSION['besucht'] != true){
     die();
 }
 
+if($profile->profile_picture != null){
+    $imagesrc = "var/www/uploads/" . $profile->profile_picture;
+}else{
+    $imagesrc = "images/profile.png";
+}
+
 ?>
 
 <div id="profile">
-    <img id="profilbild" src="images/profile.png" width="100px">
+    <img id="profilbild" src="<?=$imagesrc?>" width="100px">
     <div id="content">
         <h3 class="name"><?php echo $profile->username;?></h3><br><br>
         <p class="status"><?php echo $profile->status;?></p>
@@ -58,7 +64,7 @@ if($_SESSION['besucht'] != true){
         $picture->isLiked ? $heartClass = "glyphicon glyphicon-heart heartred" : $heartClass = "glyphicon glyphicon-heart-empty";
         echo "<div class='feed-element'>
         <div class='feed-header'>
-            <img class='feed-profilbild' src='images/profile.png'>
+            <img class='feed-profilbild' src='$imagesrc'>
             <h3 class='feed-username'>$profile->username</h3>
         </div>
         <div id='functionside'>
