@@ -42,7 +42,7 @@ if($profile->profile_picture != null){
     </form>
     <hr id="line">
     <form action="<?=$function?>" method="POST">
-        <h3><strong>Ändere deine Status hier:</strong></h3>
+        <h3><strong>Ändere deinen Status hier:</strong></h3>
         <h4 style="display: inline;">Status: </h4><input name="status" type="text" value="<?=$profile->status?>" placeholder="Status" style="border: none; border-bottom: 1px solid #FFB2B2; width: 25em; line-height: 2em;" id="input_status"><br>
         <br>
         <input type="submit" class="btn btn-default <?=$bearbeiten?>" value="Speichern" id="follow">

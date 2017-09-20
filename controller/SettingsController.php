@@ -19,6 +19,7 @@ class SettingsController extends Repository
     public function save(){
         $userRepository = new UserRepository();
         
+        session_start();
         $id = htmlspecialchars($_SESSION['user_id']);
         $status = htmlspecialchars($_POST['status']);
 
@@ -32,7 +33,8 @@ class SettingsController extends Repository
         $userRepository = new UserRepository();
 
         session_start();
-        $id = $_SESSION['user_id'];
+        $id = htmlspecialchars($_SESSION['user_id']);
+
         $uploaddir = "../public/var/www/uploads/";
 		$uploadfile = $uploaddir . addslashes(time()) . basename($_FILES['userfile']['name']);
 		$filename = addslashes(time()) . basename($_FILES['userfile']['name']);
