@@ -1,13 +1,19 @@
 <?php 
 
 session_start();
-if($$_SESSION['user_id'] == $profile->id){
+if($_SESSION['user_id'] == $profile->id){
     $myProfile = "hidden";
-}
-else{
+}else{
     $myProfile = "show";
 }
-if($_SESSION['besucht'] ]= true){
+
+if($profile->isFollowing){
+    $followText = "Defollow";
+}else{
+    $followText = "Follow";
+}
+
+if($_SESSION['besucht'] != true){
     echo("Failed to login!");
     header("Location: /login");
     die();
@@ -25,8 +31,8 @@ if($_SESSION['besucht'] ]= true){
         <div id="followbutton">
             <form action="/profile/follow" method="GET" id="form">
                 <input type="hidden" name="userId" id="follow" value="<?php echo $profile->id ?>">
-                <input type="submit" class="btn btn-default <?=$myProfile?>" value="Follow" id="follow">
-            </form> 
+                <input type="submit" class="btn btn-default <?=$myProfile?>" value="<?=$followText?>" id="follow">
+            </form>
         </div>
         <div id="followcount">
             <h3 id="count_follower"><?php echo $profile->followersCount;?> Follower</h3>

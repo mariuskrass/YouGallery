@@ -76,6 +76,7 @@ class PictureRepository extends Repository
 
         foreach($rows as $row){
             $row->isLiked = $userLikesPictureRepository->isLiked($row->id, $sessionUserId);
+            $row->likesCount = $userLikesPictureRepository->likesCount($row->id);
         }
 
         return $rows;

@@ -55,6 +55,8 @@ class UserRepository extends Repository
 
         $profile->followersCount = $userFollowsUserRepository->readFollowersCount($userId);
 
+        $profile->isFollowing = $userFollowsUserRepository->isFollowing($sessionUserId, $userId);
+
         return $profile;
     }
 
