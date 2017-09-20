@@ -4,7 +4,7 @@ if($_SESSION['besucht'] != true){
     header("Location: /login");
     die();
 }
-$function = "/profile/user/";
+$function = "/settings/save";
 ?>
 
 <div id="profile">
@@ -16,7 +16,7 @@ $function = "/profile/user/";
     </div>
     <div id="floatright">
         <div id="followbutton">
-            <form action="<?=$function?><?=$profile->userId?>" method="GET" id="form">
+            <form id="form">
                 <input type="submit" class="btn btn-default <?=$bearbeiten?>" value="Speichern" id="follow">
             </form>
         </div>
@@ -34,8 +34,9 @@ $function = "/profile/user/";
 
     </form>
     <hr id="line">
-    <form>
+    <form action="<?=$function?>" method="POST">
         <h3><strong>Ändere deine Status hier:</strong></h3>
-        <h4 style="display: inline;">Status: </h4><input type="text" value="<?=$profile->status?>" placeholder="Status" style="border: none; border-bottom: 1px solid #FFB2B2; width: 25em; line-height: 2em;" id="input_status"><br>
+        <input type="hidden" name="profileId" value="<?=$profile->id?>">
+        <h4 style="display: inline;">Status: </h4><input name="status" type="text" value="<?=$profile->status?>" placeholder="Status" style="border: none; border-bottom: 1px solid #FFB2B2; width: 25em; line-height: 2em;" id="input_status"><br>
     </form>
 </div>
