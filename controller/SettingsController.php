@@ -15,4 +15,31 @@ class SettingsController extends Repository
         $view->profile = $userRepository->readSettingsProfile($_SESSION['user_id']);
         $view->display();
     }
+
+    public function save(){
+        $userRepository = new UserRepository();
+        
+        $id = $_POST['id'];
+        $status = $_POST['status'];
+
+        $uploaddir = "../public/var/www/uploads/";
+		$uploadfile = $uploaddir . addslashes(time()) . basename($_FILES['userfile']['name']);
+		$filename = addslashes(time()) . basename($_FILES['userfile']['name']);
+		if(strlen($filename) > 60){
+			$error = true;
+		}
+		else{
+			if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
+				$error = false;
+			} else {
+				$error = true;
+			}
+		}
+    	
+        $pictureRepository = new PictureRepository();
+		
+		if (!$error){
+            $userRepository->updateProfile($id, $status, $filename);
+        }
+    }
 }
