@@ -8,5 +8,6 @@ foreach($result as $user) :?>
                 <p class='status'><?=$user->status ?></p>
                 <h3><?=$user->followersCount?></h3>
             </div>
+    </div>
 
 <?php endforeach;?>
