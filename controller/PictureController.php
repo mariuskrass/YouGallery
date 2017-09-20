@@ -21,12 +21,17 @@ class PictureController
     	$uploaddir = "../public/var/www/uploads/";
 		$uploadfile = $uploaddir . addslashes(time()) . basename($_FILES['userfile']['name']);
 		$filename = addslashes(time()) . basename($_FILES['userfile']['name']);
-
-    	if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
-    		$error = false;
-    	} else {
-    		$error = true;
+		if(strlen($filename) > 60){
+			$error = true;
 		}
+		else{
+			if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
+				$error = false;
+			} else {
+				$error = true;
+			}
+		}
+
     	
         $pictureRepository = new PictureRepository();
 		
