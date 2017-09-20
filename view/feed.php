@@ -19,7 +19,7 @@ $picture->isLiked ? $heartClass = "glyphicon glyphicon-heart" : $heartClass = "g
     <div class="feed-element">
         <div class="feed-header feed-username">
             <img class="feed-profilbild" src='/images/profile.png'>
-            <a class="feed-usernam" href="/profile?userId=<?=$picture->id?>"><?php echo $picture->username ?></a>
+            <a class="feed-usernam" href="/profile?userId=<?=$picture->userId?>"><?php echo $picture->username ?></a>
         </div>
         <div id="functionside">
             <ul>

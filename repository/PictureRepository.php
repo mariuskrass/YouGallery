@@ -32,7 +32,7 @@ class PictureRepository extends Repository
     {
         $userLikesPictureRepository = new UserLikesPictureRepository();
 
-        $query = "SELECT u.id, u.username, u.profile_picture, p.id, p.name, p.upload_date FROM user_follows_user ufu
+        $query = "SELECT u.id as userId, u.username, u.profile_picture, p.id, p.name, p.upload_date FROM user_follows_user ufu
             LEFT JOIN picture AS p ON p.user_id = ufu.user2_id
             LEFT JOIN user AS u ON u.id = ufu.user2_id
             WHERE ufu.user1_id = ?
