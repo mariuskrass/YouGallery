@@ -21,6 +21,8 @@
     border-radius: 50%;
     display: inline-block;
     float: left;
+    width: 100px;
+    height: 100px;
 }
 
 #content {
@@ -99,7 +101,8 @@
 
 .feed-profilbild{
     border-radius: 50%;
-    width: 10%;
+    height: 46px;
+    width: 46px;
     margin-left: 2%;
     margin-bottom: 2%;
 }
