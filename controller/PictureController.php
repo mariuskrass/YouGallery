@@ -2,9 +2,6 @@
 
 require_once('../repository/PictureRepository.php');
 
-/**
- * Siehe Dokumentation im DefaultController.
- */
 class PictureController
 {
     public function index()
