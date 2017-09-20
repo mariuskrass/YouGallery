@@ -1,4 +1,5 @@
 <?php 
+// Kontrolliert ob eine gültige Session aktiv ist.
 session_start();
 if($_SESSION['besucht'] == true){
 }

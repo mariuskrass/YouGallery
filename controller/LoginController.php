@@ -15,18 +15,15 @@ class LoginController
         $view->display();
     }
 
+	// Vergleicht Benutzername & Passwort mit der Datenbank
     public function doLogin(){
 		$error = false;
 		$userRepository = new UserRepository();
 		if(isset($_POST['benutzername']) && isset($_POST['passwort'])){
 			$benutzername = htmlspecialchars($_POST['benutzername']);
 			$passwort = htmlspecialchars(sha1($_POST['passwort']));
-			if(strlen($benutzername) > 25 || strlen($benutzername) == 0  || strlen($passwort) == 0){
-				$error = true;
-			}
-			else{
 			
-
+			// Vergleicht alle Datensätze mit der Eingabe
 			foreach($userRepository->readAll() as $user){
 				if($user->username == $benutzername){
 					if($user->password == $passwort){
@@ -43,7 +40,7 @@ class LoginController
 					$error = true;
 				}	
 			}
-			}
+			
 
 		}
 		else {
@@ -51,7 +48,7 @@ class LoginController
 		}
 		
 	
-
+		// Falls der Login fehl schlägt, Weiterleitung zur Login-Seite
 		if($error){
 			$view = new View('login');
 			$view->title = 'Login';
@@ -59,6 +56,7 @@ class LoginController
 			$view->error = $error;
 			$view->display();
 		}
+		// Falls Login korrekt, Weiterleitung zum Feed
 		else{
 			header("Location: /feed");
 			die();

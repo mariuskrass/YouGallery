@@ -24,6 +24,7 @@ class UserController
 		$email = htmlspecialchars($_POST["email"]);
 		$status = "I'm new on YouGallery";
 		$error = false;
+		// Validierung der Eingabe bei der Registrierung
 		foreach($userRepository->readAll() as $user){
 			if($user->username == $benutzername || strlen($benutzername) > 25 || strlen($benutzername) == 0){
 				$error = true;
@@ -40,7 +41,7 @@ class UserController
 				}
 			}
 		}
-
+		// Falls Eingaben nicht korrekt, Seite mit Fehler laden.
 		if ($error){
 			//Error
 			$view = new View('user_create');
@@ -48,7 +49,9 @@ class UserController
 			$view->heading = 'Registrieren';
 			$view->error = $error;
 			$view->display();
-		}else{
+		}
+		// Fall Eingaben korrekt, wird ein neuer Benutzer erstellt. Dananch Weiterleitung zum Login.
+		else{
 			$userRepository->create($benutzername, $passwort, $email, $status);
 
 			$view = new View('login');
