@@ -6,6 +6,14 @@ session_start();
     else{
         $myProfile = "show";
     }
+    if($_SESSION['besucht'] == true){
+        echo("Logged in");
+    }
+    else{
+        echo("Failed to login!");
+        header("Location: /login");
+        die();
+    }
 ?>
 
 <div id="profile">

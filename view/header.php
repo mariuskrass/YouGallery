@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 session_start();
 if($_SESSION['besucht'] == true){
       $option_text = " Logout";
@@ -17,6 +18,7 @@ else{
   $class = "glyphicon glyphicon-log-in";
   $style_hidden = "hidden";
   $style_register = "show"; 
+
 }
 
 ?>

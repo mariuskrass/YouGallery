@@ -5,6 +5,14 @@
     if($error === false){
         echo('<div class="alert alert-success">Datei wurde erfolgreich hochgeladen!</div>');
     }
+    if($_SESSION['besucht'] == true){
+        echo("Logged in");
+    }
+    else{
+        echo("Failed to login!");
+        header("Location: /login");
+        die();
+    }
 ?>
 <form enctype="multipart/form-data" action="/picture/upload" method="POST">
     <!-- MAX_FILE_SIZE muss vor dem Dateiupload Input Feld stehen -->
