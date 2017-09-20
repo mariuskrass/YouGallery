@@ -12,7 +12,7 @@ else{
 foreach($pictures as $picture) :?>
 
 <?php
-$picture->isLiked ? $heartClass = "glyphicon glyphicon-heart" : $heartClass = "glyphicon glyphicon-heart-empty";
+$picture->isLiked ? $heartClass = "glyphicon glyphicon-heart heartred" : $heartClass = "glyphicon glyphicon-heart-empty";
 ?>
 
 <div id="feed">

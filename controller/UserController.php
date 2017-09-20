@@ -25,11 +25,14 @@ class UserController
 		$status = "I'm new on YouGallery";
 		$error = false;
 		foreach($userRepository->readAll() as $user){
-			if($user->username == $benutzername){
+			if($user->username == $benutzername || strlen($benutzername) > 25 || strlen($benutzername) == 0){
+				$error = true;
+			}
+			if(strlen($passwort) == 0){
 				$error = true;
 			}
 			else{
-				if($user->email == $email){
+				if($user->email == $email || strlen($email) == 0){
 					$error = true;
 				}
 				else{

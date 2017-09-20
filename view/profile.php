@@ -47,7 +47,7 @@ session_start();
 <?php 
     $path = "var/www/uploads/";
     foreach ($profile->pictures as $picture){
-        $picture->isLiked ? $heartClass = "glyphicon glyphicon-heart" : $heartClass = "glyphicon glyphicon-heart-empty";
+        $picture->isLiked ? $heartClass = "glyphicon glyphicon-heart heartred" : $heartClass = "glyphicon glyphicon-heart-empty";
         echo "<div class='feed-element'>
         <div class='feed-header'>
             <img class='feed-profilbild' src='images/profile.png'>

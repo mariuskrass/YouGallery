@@ -21,6 +21,11 @@ class LoginController
 		if(isset($_POST['benutzername']) && isset($_POST['passwort'])){
 			$benutzername = htmlspecialchars($_POST['benutzername']);
 			$passwort = htmlspecialchars(sha1($_POST['passwort']));
+			if(strlen($benutzername) > 25 || strlen($benutzername) == 0  || strlen($passwort) == 0){
+				$error = true;
+			}
+			else{
+			
 
 			foreach($userRepository->readAll() as $user){
 				if($user->username == $benutzername){
@@ -37,6 +42,7 @@ class LoginController
 				else{
 					$error = true;
 				}	
+			}
 			}
 
 		}
