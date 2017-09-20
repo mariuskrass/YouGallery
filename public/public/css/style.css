@@ -169,3 +169,16 @@
     color:red;
     transition-delay: 0.1ms;
 }
+
+.btn-default {
+    border-color: #FFB2B2;
+}
+
+.btn-default:hover {
+    border-color: #FFB2B2;
+    background-color:rgba(255,178,178,0.3);
+}
+
+#search {
+    border-color: #FFB2B2;
+}

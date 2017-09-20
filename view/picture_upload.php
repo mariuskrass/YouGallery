@@ -6,7 +6,7 @@
         echo('<div class="alert alert-success">Datei wurde erfolgreich hochgeladen!</div>');
     }
     if($_SESSION['besucht'] == true){
-        echo("Logged in");
+
     }
     else{
         echo("Failed to login!");

@@ -52,7 +52,7 @@ else{
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
       </button>
-      <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-camera" style="font-size: 1em;"></span> YouGallery</a>
+      <a class="navbar-brand navcolor" href="/" style="font-size: 1.2em; color: #7F5959;"><span class="glyphicon glyphicon-camera" style="font-size: 1.2em; color: #7F5959;"></span> YouGallery</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav <?= $style_hidden ?>">
@@ -66,7 +66,7 @@ else{
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Search" name="keyword" id="search">
             <div class="input-group-btn">
-                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search" style="color: #FFB2B2;"></i></button>
             </div>
         </div>
         </form>

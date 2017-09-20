@@ -6,8 +6,10 @@ foreach($result as $user) :?>
             <div id='content' class='searchname'>
                 <a class='name' href="/profile?userId=<?=$user->id?>"><?=$user->username?></a><br><br>
                 <p class='status'><?=$user->status ?></p>
-                <h3><?=$user->followersCount?></h3>
+                <h3><?=$user->followersCount?> Follower</h3>
             </div>
 </div>
+<br>
+<br>
 
 <?php endforeach;?>
