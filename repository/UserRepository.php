@@ -60,6 +60,22 @@ class UserRepository extends Repository
         return $profile;
     }
 
+    public function readSettingsProfile($userId){
+        // get user
+        $query = "SELECT id, username, status, profile_picture FROM $this->tableName WHERE id = ?;";
+
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('i', $userId);
+        $statement->execute();
+
+        $result = $statement->get_result();
+        if (!$result) {
+            throw new Exception($statement->error);
+        }
+
+        return $result->fetch_object();
+    }
+
     public function readByKeyword($keyword){
         $keyword = "%$keyword%";
         $query = "SELECT id, username, status, profile_picture FROM user
