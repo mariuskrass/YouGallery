@@ -1,22 +1,4 @@
-<?php 
-
-session_start();
-if($_SESSION['user_id'] == $profile->id){
-    $myProfile = "hidden";
-    $bearbeiten = "show";
-    $function = "/settings";
-}else{
-    $myProfile = "show";
-    $bearbeiten = "hidden";
-    $function = "/profile/follow";
-}
-
-if($profile->isFollowing){
-    $followText = "Defollow";
-}else{
-    $followText = "Follow";
-}
-
+<?php
 if($_SESSION['besucht'] != true){
     echo("Failed to login!");
     header("Location: /login");
@@ -59,7 +41,7 @@ if($_SESSION['besucht'] != true){
         </div>
         <div id='functionside'>
             <ul>
-                <li><a class='iconsside-count' >$picture->likesCount</a</li>
+                <li><a class='iconsside-count' href='/feed/like?pictureId=$picture->id'>$picture->likesCount</a</li>
                 <li><a class='iconsside-heart' href='/profile/like?pictureId=$picture->id&userId=$profile->id'><span class='$heartClass'></a></span></li>
                 <li><a class='iconsside' href=''><span class='glyphicon glyphicon-comment'></a></span></li>
             </ul>
@@ -70,4 +52,3 @@ if($_SESSION['besucht'] != true){
 
     ?>
 </div>
-

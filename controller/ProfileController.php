@@ -53,4 +53,9 @@ class ProfileController
         header("Location: /profile?userId=$userId2");
         die();
     }
+
+    public function settings(){
+        Header("Location /settings");
+        die();
+    }
 }
