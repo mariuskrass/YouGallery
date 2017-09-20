@@ -3,6 +3,13 @@
 require_once '../lib/Repository.php';
 require_once '../repository/UserLikesPictureRepository.php';
 
+function cmp($a, $b) {
+    if ($a->likesCount == $b->likesCount) {
+        return 0;
+    }
+    return ($a->likesCount > $b->likesCount) ? -1 : 1;
+}
+
 class PictureRepository extends Repository
 {
     protected $tableName = 'picture';
@@ -63,7 +70,6 @@ class PictureRepository extends Repository
             LEFT JOIN user AS u ON u.id = p.user_id";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('i', $userId);
         $statement->execute();
 
         $result = $statement->get_result();
@@ -82,7 +88,8 @@ class PictureRepository extends Repository
             $row->likesCount = $userLikesPictureRepository->likesCount($row->id);
         }
 
-        arsort($rows);
+        //var_dump($rows);
+        uasort($rows, 'cmp');
 
         return $rows;
     }

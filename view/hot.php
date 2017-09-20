@@ -23,8 +23,8 @@ $picture->isLiked ? $heartClass = "glyphicon glyphicon-heart heartred" : $heartC
         </div>
         <div id="functionside">
             <ul>
-            <li><a class="iconsside-count" href="/feed/like?pictureId=<?=$picture->id?>"><?=$countLikes?></a</li>
-                <li><a class="iconsside-heart" href="/feed/like?pictureId=<?=$picture->id?>"><span class="<?=$heartClass?>"></a></span></li>
+            <li><a class="iconsside-count"><?=$picture->likesCount?></a</li>
+                <li><a class="iconsside-heart" href="/hot/like?pictureId=<?=$picture->id?>"><span class="<?=$heartClass?>"></a></span></li>
                 <li><a class="iconsside" href=""><span class="glyphicon glyphicon-comment"></a></span></li>
             </ul>
         </div>
