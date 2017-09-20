@@ -17,6 +17,7 @@ class FeedController
         $view->heading = 'Feed';
         session_start();
         $view->pictures = $pictureRepository->readFeed($_SESSION['user_id']);
+        $view->active_feed = "active";
         $view->display();
     }
 

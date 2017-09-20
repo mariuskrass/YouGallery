@@ -17,6 +17,7 @@ class HotController
         $view->heading = 'Hot';
         session_start();
         $view->pictures = $pictureRepository->readHot($_SESSION['user_id']);
+        $view->active_hot = "active";
         $view->display();
     }
 

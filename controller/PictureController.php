@@ -13,6 +13,7 @@ class PictureController
     	$view->title = 'Bild hochladen';
 		$view->heading = 'Bild hochladen';
 		$view->error = null;
+		$view->active_picture = "active";
     	$view->display();
     }
 
