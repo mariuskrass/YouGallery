@@ -54,7 +54,7 @@ if($_SESSION['besucht'] != true){
         </div>
         <div id='functionside'>
             <ul>
-                <li><a class='iconsside-count' href='/feed/like?pictureId=<?=$picture->id?>'><?=$picture->likesCount?></a</li>
+                <li><a class='iconsside-count' href='/feed/like?pictureId=$picture->id'>$picture->likesCount</a</li>
                 <li><a class='iconsside-heart' href='/profile/like?pictureId=$picture->id&userId=$profile->id'><span class='$heartClass'></a></span></li>
                 <li><a class='iconsside' href=''><span class='glyphicon glyphicon-comment'></a></span></li>
             </ul>
