@@ -31,6 +31,7 @@ $function = "/settings/save";
         <input type="hidden" name="MAX_FILE_SIZE" value="10000000" class="btn btn-default"/>
         <!-- Der Name des Input Felds bestimmt den Namen im $_FILES Array -->
         Diese Datei hochladen: <input name="userfile" type="file" accept="image/*" class="btn btn-default" /><br>
+        <input type="submit" class="btn btn-default <?=$bearbeiten?>" value="Speichern" id="follow">
 
     </form>
     <hr id="line">
@@ -38,5 +39,7 @@ $function = "/settings/save";
         <h3><strong>Ändere deine Status hier:</strong></h3>
         <input type="hidden" name="profileId" value="<?=$profile->id?>">
         <h4 style="display: inline;">Status: </h4><input name="status" type="text" value="<?=$profile->status?>" placeholder="Status" style="border: none; border-bottom: 1px solid #FFB2B2; width: 25em; line-height: 2em;" id="input_status"><br>
+        <br>
+        <input type="submit" class="btn btn-default <?=$bearbeiten?>" value="Speichern" id="follow">
     </form>
 </div>
