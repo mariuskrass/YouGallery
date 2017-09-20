@@ -46,7 +46,7 @@ class UserRepository extends Repository
          return $statement->insert_id;
      }
 
-    public function readProfile($userId){
+    public function readProfile($userId, $sessionUserId){
         // get user
         $query = "SELECT id, username, status, profile_picture FROM $this->tableName WHERE id = ?;";
 
@@ -70,7 +70,7 @@ class UserRepository extends Repository
         // get pictures from user
         $pictureRepository = new PictureRepository();
 
-        $profile->pictures = $pictureRepository->readAllByUserId($userId);
+        $profile->pictures = $pictureRepository->readAllByUserId($userId, $sessionUserId);
 
         // get follows
         $userFollowsUserRepository = new UserFollowsUserRepository();
